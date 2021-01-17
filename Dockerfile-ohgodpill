@@ -1,0 +1,8 @@
+FROM etherminer
+
+WORKDIR /opt
+
+RUN git clone https://github.com/pangyuteng/OhGodAnETHlargementPill.git
+RUN chmod +x /opt/OhGodAnETHlargementPill/OhGodAnETHlargementPill
+
+#ENTRYPOINT ['/opt/OhGodAnETHlargementPill/OhGodAnETHlargementPill']
