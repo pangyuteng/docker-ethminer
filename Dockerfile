@@ -1,15 +1,18 @@
+#FROM nvidia/cuda:11.2.0-devel-ubuntu18.04
 FROM nvidia/cuda:8.0-devel-ubuntu16.04
-
 MAINTAINER Anthony Tatowicz
 
-WORKDIR /
+
+ENV DEBIAN_FRONTEND=noninteractive 
+
+WORKDIR /opt
 
 # Package and dependency setup
 RUN apt-get update \
-    && apt-get -y install software-properties-common \
-    && add-apt-repository -y ppa:ethereum/ethereum -y \
+    && apt-get -qy install software-properties-common \
+    && add-apt-repository ppa:ethereum/ethereum -y \
     && apt-get update \
-    && apt-get install -y git \
+    && apt-get install -qy git \
      cmake \
      libcryptopp-dev \
      libleveldb-dev \
@@ -28,7 +31,7 @@ RUN apt-get update \
 # Git repo set up
 RUN git clone https://github.com/ethereum-mining/ethminer.git; \
     cd ethminer; \
-    git checkout tags/v0.12.0 
+    git checkout tags/v0.12.0
 
 # Build
 RUN cd ethminer; \
@@ -45,4 +48,5 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-ENTRYPOINT ["/usr/local/bin/ethminer", "-U"]
+
+#ENTRYPOINT ["/usr/local/bin/ethminer", "-U"]
