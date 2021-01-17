@@ -13,7 +13,7 @@ services:
     runtime: nvidia
     privileged: true
     restart: always
-    command: /usr/local/bin/ethminer -U -S us2.ethermine.org:4444 -FF us1.ethermine.org:4444 -O 7917703feb03cdf0b6c202fc81cba6e161597fc4 --cuda -RH -SP 1 --cuda-parallel-hash 4 --cuda-block-size 512 --cuda-grid-size 20480 
+    command: /usr/local/bin/ethminer -U -S us2.ethermine.org:4444 -FF us1.ethermine.org:4444 -O 7917703feb03cdf0b6c202fc81cba6e161597fc4 --cuda -RH -SP 1 --cuda-parallel-hash 4 
   ohgodpill:
     image: ohgodpill
     build:
