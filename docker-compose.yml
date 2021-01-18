@@ -8,5 +8,6 @@ services:
     runtime: nvidia
     privileged: true
     restart: always
+    #command: echo $POOL1 -FF $POOL2 -O $ETH_WALLET.$WORKERNAME
     command: /usr/local/bin/ethminer -U -S $POOL1 -FF $POOL2 -O $ETH_WALLET.$WORKERNAME --cuda -RH -SP 1 --cuda-parallel-hash 4
  
