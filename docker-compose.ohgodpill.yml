@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  ohgodpill:
+    image: ohgodpill
+    build:
+      context: .
+      dockerfile: Dockerfile-ohgodpill
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    runtime: nvidia
+    privileged: true
+    restart: always    
+    command: /opt/OhGodAnETHlargementPill/OhGodAnETHlargementPill 

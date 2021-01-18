@@ -5,23 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - ETH_WALLET=7917703feb03cdf0b6c202fc81cba6e161597fc4
-      - POOL1=us2.ethermine.org:4444
-      - POOL2=us1.ethermine.org:4444
-      - NVIDIA_VISIBLE_DEVICES=all
     runtime: nvidia
     privileged: true
     restart: always
-    command: /usr/local/bin/ethminer -U -S us2.ethermine.org:4444 -FF us1.ethermine.org:4444 -O 7917703feb03cdf0b6c202fc81cba6e161597fc4.$$HOSTNAME --cuda -RH -SP 1 --cuda-parallel-hash 4 
-  ohgodpill:
-    image: ohgodpill
-    build:
-      context: .
-      dockerfile: Dockerfile-ohgodpill
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    runtime: nvidia
-    privileged: true
-    restart: always    
-    command: /opt/OhGodAnETHlargementPill/OhGodAnETHlargementPill 
+    command: /usr/local/bin/ethminer -U -S $POOL1 -FF $POOL2 -O $ETH_WALLET.$WORKERNAME --cuda -RH -SP 1 --cuda-parallel-hash 4
+ 
