@@ -46,7 +46,7 @@
            printf "%s\n" "setting persistence mode..."
            sudo nvidia-smi -i $i -pm 1
            printf "%s\n" "setting power limit..."
-           sudo nvidia-smi -i $i -pl 125
+           sudo nvidia-smi -i $i -pl 1y5
            printf "%s\n" "setting memory overclock..."
 	   #DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 
 	   #nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[2]=550
