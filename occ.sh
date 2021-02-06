@@ -30,16 +30,19 @@
     index=$(( number_of_gpus[0] - 1 ))
     for i in $(seq 0 $index)
     do
-       if nvidia-smi -i $i --query-gpu=name --format=csv,noheader,nounits | grep -E "1060" 1> /dev/null
+       if nvidia-smi -i $i --query-gpu=name --format=csv,noheader,nounits | grep -E "1070" 1> /dev/null
        then
-           printf "%s\n" "found GeForce GTX 1080 at index $i..."
+           printf "%s\n" "found GeForce GTX 1070 at index $i..."
            printf "%s\n" "setting persistence mode..."
            nvidia-smi -i $i -pm 1
-           printf "%s\n" "setting power limit to 75 watts.."
-           nvidia-smi -i $i -pl 75
+           printf "%s\n" "setting power limit to 100 watts.."
+           nvidia-smi -i $i -pl 100
            printf "%s\n" "setting memory overclock of 500 Mhz..."
-           nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[3]=500
-	   #DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[2]=500          
+           #nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[3]=500
+	   #DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[2]=500
+	   sudo DISPLAY=:0 XAUTHORITY=/run/user/121/gdm/Xauthority nvidia-settings -a [gpu:${i}]/GPUGraphicsClockOffset[3]=0
+	   sudo DISPLAY=:0 XAUTHORITY=/run/user/121/gdm/Xauthority nvidia-settings -a [gpu:${i}]/GPUMemoryTransferRateOffset[3]=550
+
        elif nvidia-smi -i $i --query-gpu=name --format=csv,noheader,nounits | grep -E "1080" 1> /dev/null
        then 
            printf "%s\n" "found GeForce GTX 1080 at index $i..."
