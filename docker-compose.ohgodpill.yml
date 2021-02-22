@@ -8,6 +8,8 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
     runtime: nvidia
+    depends_on:
+      - etherminer
     privileged: true
     restart: always    
     command: /opt/OhGodAnETHlargementPill/OhGodAnETHlargementPill 
